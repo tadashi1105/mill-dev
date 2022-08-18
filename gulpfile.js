@@ -98,6 +98,9 @@ function devServer() {
 		notify: false,
 		open: false,
 		logConnections: true,
+		socket: {
+			domain: "' + location.host + '",
+		},
 	});
 
 	const watcherCSS = watch(['./src/assets/css/**/*.css'], {
