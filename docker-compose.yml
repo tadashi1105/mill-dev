@@ -1,7 +1,7 @@
 version: '3.4'
 services:
     db:
-        image: mariadb
+        image: mariadb:10.5
         environment:
             MYSQL_ROOT_PASSWORD: 'root'
             MYSQL_DATABASE: 'wordpress'
@@ -34,7 +34,7 @@ services:
             - db
 
     wordpress-chmod:
-        image: wordpress:5-php7.4-fpm
+        image: wordpress:6-php7.4-fpm
         restart: on-failure
         depends_on:
             - wordpress
