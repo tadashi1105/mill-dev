@@ -26,11 +26,20 @@
 	],
 	"homepage": "https://www.wordpressify.co",
 	"repository": "https://github.com/luangjokaj/wordpressify",
-	"exports": "./installer/index.js",
 	"type": "module",
 	"node": "^12.20.0 || ^14.13.1 || >=16.0.0",
-	"bin": {
-		"wordpressify": "./installer/index.js"
+	"scripts": {
+		"dev": "gulp dev",
+		"prod": "gulp prod",
+		"backup": "gulp backup",
+		"lint:css": "stylelint src/**/*.css",
+		"start": "docker compose up",
+		"build": "docker compose build",
+		"delete": "docker compose down -v",
+		"rebuild": "docker compose down -v && docker compose build",
+		"export": "docker compose run --rm nodejs npm run prod",
+		"export:backup": "docker compose run --rm nodejs npm run backup",
+		"lintcss": "docker compose run --rm nodejs npm run lint:css"
 	},
 	"author": "Luan Gjokaj <luan@riangle.com>",
 	"contributors": [
@@ -50,11 +59,27 @@
 	],
 	"license": "MIT",
 	"dependencies": {
-		"chalk": "^5.0.1",
-		"commander": "^9.2.0",
-		"download": "^8.0.0",
-		"execa": "^6.1.0",
-		"ora": "^6.1.0",
-		"prompts": "^2.4.2"
+		"@babel/core": "^7.17.10",
+		"@babel/preset-env": "^7.17.10",
+		"autoprefixer": "^10.4.7",
+		"browser-sync": "^2.27.9",
+		"cherry-postcss": "^0.0.2-17",
+		"cssnano": "^5.1.7",
+		"del": "^6.0.0",
+		"fancy-log": "^2.0.0",
+		"gulp": "^4.0.2",
+		"gulp-babel": "^8.0.0",
+		"gulp-concat": "^2.6.1",
+		"gulp-plumber": "^1.2.1",
+		"gulp-postcss": "^9.0.1",
+		"gulp-sourcemaps": "^3.0.0",
+		"gulp-uglify": "^3.0.2",
+		"gulp-vinyl-zip": "^2.5.0",
+		"jquery": "^3.6.0",
+		"postcss": "^8.4.13",
+		"postcss-easy-import": "^4.0.0",
+		"postcss-mixins": "^9.0.2",
+		"postcss-preset-env": "^7.5.0",
+		"stylelint": "^14.8.2"
 	}
 }
