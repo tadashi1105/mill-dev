@@ -15,6 +15,8 @@ import sourcemaps from 'gulp-sourcemaps';
 import uglify from 'gulp-uglify';
 import zip from 'gulp-vinyl-zip';
 import cssnano from 'cssnano';
+import dartSass from 'sass';
+import gulpSass from 'gulp-sass';
 
 const { series, dest, src, watch } = pkg;
 
@@ -22,6 +24,11 @@ const { series, dest, src, watch } = pkg;
 Theme Name
 -------------------------------------------------------------------------------------------------- */
 const themeName = process.env.THEME_NAME || 'wordpressify';
+
+/* -------------------------------------------------------------------------------------------------
+SASS Plugins
+-------------------------------------------------------------------------------------------------- */
+const sass = gulpSass(dartSass);
 
 /* -------------------------------------------------------------------------------------------------
 PostCSS Plugins
@@ -103,7 +110,7 @@ function devServer() {
 		},
 	});
 
-	const watcherCSS = watch(['./src/assets/css/**/*.css'], {
+	const watcherCSS = watch(['./src/assets/css/**/*.css', './src/assets/css/**/*.scss'], {
 		interval: 1000,
 		usePolling: true,
 	});
@@ -192,9 +199,10 @@ function copyFontsDev() {
 }
 
 function stylesDev() {
-	return src('./src/assets/css/style.css')
+	return src('./src/assets/css/style.scss')
 		.pipe(plumber({ errorHandler: onError }))
 		.pipe(sourcemaps.init())
+		.pipe(sass({includePaths: 'node_modules'}).on('error', sass.logError))
 		.pipe(postcss(pluginsListDev))
 		.pipe(sourcemaps.write('.'))
 		.pipe(dest('./build/wordpress/wp-content/themes/' + themeName))
@@ -265,8 +273,9 @@ function copyFontsProd() {
 }
 
 function stylesProd() {
-	return src('./src/assets/css/style.css')
+	return src('./src/assets/css/style.scss')
 		.pipe(plumber({ errorHandler: onError }))
+		.pipe(sass({includePaths: 'node_modules'}).on('error', sass.logError))
 		.pipe(postcss(pluginsListProd))
 		.pipe(dest('./dist/themes/' + themeName));
 }

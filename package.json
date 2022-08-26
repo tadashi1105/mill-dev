@@ -72,6 +72,7 @@
 		"gulp-concat": "^2.6.1",
 		"gulp-plumber": "^1.2.1",
 		"gulp-postcss": "^9.0.1",
+		"gulp-sass": "^5.1.0",
 		"gulp-sourcemaps": "^3.0.0",
 		"gulp-uglify": "^3.0.2",
 		"gulp-vinyl-zip": "^2.5.0",
@@ -80,6 +81,7 @@
 		"postcss-easy-import": "^4.0.0",
 		"postcss-mixins": "^9.0.2",
 		"postcss-preset-env": "^7.5.0",
+		"sass": "^1.54.5",
 		"stylelint": "^14.8.2"
 	}
 }
