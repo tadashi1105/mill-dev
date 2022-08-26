@@ -1,14 +1,20 @@
-
 /*
-Theme Name: WordPressify
-Theme URI: https://www.wordpressify.co
-Author: Luan Gjokaj
-Author URI: https://www.riangle.com
-Description: WordPressify default theme.
-Version: 1.0
-Tags: responsive, clean, minimal, modern, wordpressify
+Theme Name: MILL
+Theme URI: https://millkeyweb.com
+Author: Tadashi Matsuura
+Author URI: https://millkeyweb.com
+Description: MILL KEY default theme.
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: two-columns, right-sidebar, responsive, clean, minimal, modern
+Text Domain: mill
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
 */
 
 @import "cherry-postcss/src/cherry.css";
 
 @import "./wordpressify";
+@import "./mill";

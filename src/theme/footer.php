@@ -1,17 +1,16 @@
-<footer class="footer">
-	<div class="container footer-inner">
-		<div class="text-row">
-			<p>
-				<strong>
-					<?php bloginfo('name'); ?>
-				</strong>
-			</p>
-			<p class="text-gray-400">
-				Copyright <?php echo date('Y'); ?> &copy; All rights reserved
-			</p>
-		</div>
-	</div>
-</footer>
+<?php
+/**
+ *
+ *
+ * @package WordPress
+ * @since Mill 1.0.0
+ */
+?>
+<footer id="footer" class="bg-surface-dark" role="contentinfo">
+	<?php get_template_part( 'template-parts/footer/back-to-top' ); ?>
+	<?php get_template_part( 'template-parts/footer/colophon' ); ?>
+</footer><!-- #footer -->
+</div><!-- #page -->
 <?php wp_footer(); ?>
 </body>
 </html>

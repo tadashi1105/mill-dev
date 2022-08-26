@@ -1,0 +1,175 @@
+/*
+Theme Name: MILL
+Theme URI: https://millkeyweb.com
+Author: Tadashi Matsuura
+Author URI: https://millkeyweb.com
+Description: MILL KEY default theme.
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: two-columns, right-sidebar, responsive, clean, minimal, modern
+Text Domain: mill
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+@use "@webpixels/css";
+// @use "mill";
+
+.home.blog .wp-post-image,
+.search .wp-post-image,
+.archive .wp-post-image {
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+}
+
+.page .wp-post-image,
+.post .wp-post-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.comments-pagination,
+.pagination {
+    .page-numbers{
+        border-radius: 50rem;
+        box-shadow: 0px 3px 3px -1px rgb(10 22 70 / 10%), 0px 0px 1px 0px rgb(10 22 70 / 6%);
+        background-color: #FFF;
+        min-width: 2.25rem;
+        height: 2.25rem;
+        align-items: center;
+        justify-content: center;
+        display: inline-flex;
+        padding: 0 0.75rem;
+    }
+    a.page-numbers:hover {
+        color: #16192c;
+        background-color: #fafafa;
+    }
+    .page-numbers.dots {
+        background-color: transparent;
+        box-shadow: none;
+    }
+}
+
+.post-page-numbers {
+    border-radius: 50rem;
+    box-shadow: 0px 3px 3px -1px rgb(10 22 70 / 10%), 0px 0px 1px 0px rgb(10 22 70 / 6%);
+    background-color: #FFF;
+    min-width: 2.25rem;
+    height: 2.25rem;
+    align-items: center;
+    justify-content: center;
+    display: inline-flex;
+    padding: 0 0.75rem;
+}
+
+.nav-next,
+.nav-previous {
+    flex: 1;
+    overflow: hidden;
+    box-shadow: 0px 3px 3px -1px rgb(10 22 70 / 10%), 0px 0px 1px 0px rgb(10 22 70 / 6%);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background-color: #FFF;
+    a {
+       color: rgba(var(--x-body-color-rgb),var(--x-text-opacity));
+       --x-text-opacity: 1;
+    }
+}
+
+.widget_categories .cat-item {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    &:last-child {
+        border-bottom: 0;
+    }
+}
+
+.widget_categories .cat-item a {
+    color: rgba(var(--x-dark-rgb),var(--x-text-opacity));
+}
+
+.widget_tag_cloud .is-style-outline .tag-cloud-link {
+    color: rgba(var(--x-dark-rgb),var(--x-text-opacity));
+    border-color: rgba(var(--x-dark-rgb),var(--x-text-opacity));
+    font-weight: 500;
+    line-height: 1.3;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-color: transparent;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    border-radius: 0.375rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    &:hover {
+        color: #fff;
+        border-color: rgb(82, 95, 127);
+        background-color: rgb(82, 95, 127);
+    }
+}
+
+.widget_search .wp-block-search__input {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.3;
+    color: #16192C;
+    background-color: #FFF;
+    background-clip: padding-box;
+    border: 1px solid #E7EAF0;
+    appearance: none;
+    border-radius: 0.375rem;
+    box-shadow: 0px 1px 2px rgba(50, 50, 71, 0.08);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    margin-right: 0.5rem;
+    &:focus {
+        color: #16192C;
+        background-color: #FFF;
+        border-color: #5C60F5;
+        outline: 0;
+        box-shadow: 0px 1px 2px rgb(50 50 71 / 8%), 0 0 0 3px rgb(92 96 245 / 25%);
+    }
+}
+
+.widget_search .wp-block-search__button {
+    word-break: keep-all;
+    color: #FFF;
+    border-color: #5C60F5;
+    font-weight: 500;
+    line-height: 1.3;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-color: #5C60F5;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    border-radius: 0.375rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 8%);
+    margin-left: 0;
+    &:hover {
+        color: #FFF;
+        background-color: #4a4dc4;
+        border-color: #4a4dc4;
+    }
+}
+
+.mill-typography h1,
+.mill-typography h2,
+.mill-typography h3,
+.mill-typography h4,
+.mill-typography h5,
+.mill-typography h6,
+.mill-typography figure,
+.mill-typography p {
+    margin-bottom: 1rem;
+}
