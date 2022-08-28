@@ -8,20 +8,20 @@
 
 get_header();
 ?>
-<div id="content" class="site-l-content">
-	<div class="site-c-container">
-		<div class="site-c-row">
-			<div class="site-c-col-xs-12">
-				<main id="main" class="site-l-main" role="main">
+<div id="content">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<main id="main" class="d-flex flex-column gap-4 mb-8" role="main">
 					<?php if ( have_posts() ) :
 						while ( have_posts() ) :
 							the_post();
                             get_template_part( 'template-parts/content/content-page' );
 						endwhile;
 					endif; ?>
-				</main><!-- .site-l-main -->
+				</main><!-- #main -->
 			</div>
 		</div>
 	</div>
-</div><!-- .site-l-content -->
+</div><!-- #content -->
 <?php get_footer();

@@ -20,6 +20,43 @@ function mill_navigation_markup_template( $template, $class ) {
 		return $template;
 }
 
+add_filter( 'paginate_links_output', 'mill_paginate_links_output', 10, 2 );
+function mill_paginate_links_output( $r, $args ) {
+	if ( in_array( $args['class'], ['pagination', 'comments-pagination'] ) ) {
+		$r = str_replace( 'class="prev page-numbers"', 'class="prev page-numbers d-inline-flex justify-content-center align-items-center text-body rounded-4 bg-surface-primary shadow p-3"', $r ); 
+		$r = str_replace( 'class="page-numbers current"', 'class="page-numbers current d-inline-flex justify-content-center align-items-center text-body font-bolder rounded-4 bg-surface-primary shadow p-3"', $r ); 
+		$r = str_replace( 'class="page-numbers"', 'class="page-numbers d-inline-flex justify-content-center align-items-center text-body rounded-4 bg-surface-primary shadow p-3"', $r ); 
+		$r = str_replace( 'class="page-numbers dots"', 'class="page-numbers dots d-inline-flex justify-content-center align-items-center text-body rounded-4 p-3"', $r ); 
+		$r = str_replace( 'class="next page-numbers"', 'class="next page-numbers d-inline-flex justify-content-center align-items-center text-body rounded-4 bg-surface-primary shadow p-3"', $r ); 
+	}
+	return $r;
+}
+
+add_filter( 'wp_link_pages', 'mill_wp_link_pages', 10, 2 );
+function mill_wp_link_pages( $output, $args ) {
+	$output = str_replace( 'class="post-page-numbers current"', 'class="post-page-numbers current d-inline-flex justify-content-center align-items-center text-body font-bolder rounded-4 bg-surface-primary shadow p-3"', $output ); 
+	$output = str_replace( 'class="post-page-numbers"', 'class="post-page-numbers d-inline-flex justify-content-center align-items-center text-body rounded-4 bg-surface-primary shadow p-3"', $output ); 
+	return $output;
+}
+
+add_filter( 'previous_post_link', 'mill_previous_post_link', 10, 5 );
+function mill_previous_post_link ( $output, $format, $link, $post, $adjacent ) {
+	if ( 'previous' === $adjacent ) {
+		$output = str_replace( 'class="nav-previous"', 'class="nav-previous overflow-hidden p-2 p-sm-6 bg-surface-primary rounded-4 shadow w-full"', $output ); 
+		$output = str_replace( 'rel="prev"', 'class="link-dark opacity-60" rel="prev"', $output ); 
+	}
+	return $output;
+}
+
+add_filter( 'next_post_link', 'mill_next_post_link', 10, 5 );
+function mill_next_post_link ( $output, $format, $link, $post, $adjacent ) {
+	if ( 'next' === $adjacent ) {
+		$output = str_replace( 'class="nav-next"', 'class="nav-next overflow-hidden p-2 p-sm-6 bg-surface-primary rounded-4 shadow w-full"', $output ); 
+		$output = str_replace( 'rel="next"', 'class="link-dark opacity-60" rel="next"', $output ); 
+	}
+	return $output;
+}
+
 /**
  *
  *
@@ -135,7 +172,7 @@ function mill_comment( $comment, $args, $depth ) {
 				echo get_avatar( $comment, $args['avatar_size'], '', '', [ 'class' => 'rounded-circle' ] );
 			endif; ?>
 		</div><!-- .comment-author -->
-		<div class="flex-grow-1 py-6 px-1 px-sm-6 shadow bg-surface-primary rounded-4 min-w-0">
+		<div class="flex-grow-1 p-2 p-sm-6 shadow bg-surface-primary rounded-4 min-w-0">
 			<div class="comment-metadata d-flex gap-2 mb-4">
 				<?php printf(
 					'<b class="fn">%s</b><a class="text-body" href="%s"><time datetime="%s">%s</time></a>',
@@ -143,16 +180,16 @@ function mill_comment( $comment, $args, $depth ) {
 					esc_url( get_comment_link( $comment, $args ) ),
 					get_comment_time( 'c' ),
 					sprintf(
-						__( '%1$s at %2$s', 'mill' ),
+						__( '%1$s at %2$s' ),
 						get_comment_date( '', $comment ),
 						get_comment_time()
 					)
 				);
-				edit_comment_link( __( 'Edit', 'mill' ), '<span class="edit-link">', '</span>' ); ?>
+				edit_comment_link(); ?>
 			</div><!-- .comment-metadata -->
 			<div class="comment-content mill-typography">
 				<?php if ( '0' == $comment->comment_approved ) : ?>
-					<p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'mill' ); ?></p>
+					<p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' ); ?></p>
 				<?php endif; ?>
 				<?php comment_text(); ?>
 			</div><!-- .comment-content -->
@@ -168,22 +205,71 @@ function mill_comment( $comment, $args, $depth ) {
 <?php }
 
 // wp_nav_menuのliにclass追加
-add_filter( 'nav_menu_css_class', 'mill_add_additional_class_on_li', 1, 3 );
+add_filter( 'nav_menu_css_class', 'mill_add_additional_class_on_li', 10, 3 );
 function mill_add_additional_class_on_li( $classes, $item, $args ) {
-  if ( isset( $args->mill_li_class ) ) {
-    $classes[] = $args->mill_li_class;
+  if ( isset( $args['mill_li_class'] ) ) {
+    $classes[] = $args['mill_li_class'];
   }
   return $classes;
 }
 
 // wp_nav_menuのaにclass追加
-add_filter( 'nav_menu_link_attributes', 'mill_add_additional_class_on_a', 1, 3 );
+add_filter( 'nav_menu_link_attributes', 'mill_add_additional_class_on_a', 10, 3 );
 function mill_add_additional_class_on_a( $atts, $item, $args ) {
-	if ( isset( $args->mill_a_class ) ) {
-		$atts['class'] = $args->mill_a_class;
+	if ( isset( $args['mill_a_class'] ) ) {
+		$atts['class'] = $args['mill_a_class'];
 		if ( $item->current ) {
 			$atts['class'] = $atts['class'] . ' active';
 		}
 	}
 	return $atts;
+}
+
+add_filter( 'category_list_link_attributes', 'mill_add_category_list_link_attributes', 10, 4 );
+function mill_add_category_list_link_attributes ( $atts, $category, $depth, $args ) {
+	if ( 'list'  === $args['style'] ) {
+		$atts['class'] = 'link-dark opacity-60';
+		$atts['rel'] = 'category';
+		return $atts;
+	}
+	if ( 'mill-badge'  === $args['style'] ) {
+		$atts['class'] = 'badge rounded-pill bg-primary';
+		$atts['rel'] = 'category tag';
+		return $atts;
+	}
+	return $atts;
+}
+
+add_filter( 'category_css_class', 'mill_add_category_css_class', 10, 4 );
+function mill_add_category_css_class ( $css_classes, $category, $depth, $args ) {
+	if ( 'list'  === $args['style'] ) {
+		$css_classes[] = 'list-group-item';
+	}
+	return $css_classes;
+}
+
+add_filter( 'wp_generate_tag_cloud_data', 'mill_wp_generate_tag_cloud_data' );
+function mill_wp_generate_tag_cloud_data ( $tags_data ) {
+	$tags_data = array_map( function( $value ){
+		if ( isset( $value['class'] ) ) {
+			$value['class'] = $value['class'] . ' btn btn-outline-dark btn-sm opacity-60 text-nowrap';
+		}
+		return $value;
+	}, $tags_data);
+	return $tags_data;
+}
+
+add_filter( 'the_category', 'mill_the_category', 10, 2 );
+function mill_the_category ( $thelist, $separator ) {
+	if ( 'none' === $separator) {
+		$thelist = str_replace( $separator, '', $thelist ); 
+	}
+	$thelist = str_replace( 'rel="category', 'class="link-dark opacity-60" rel="category', $thelist ); 
+	return $thelist;
+}
+
+add_filter( 'the_tags', 'mill_the_tags' );
+function mill_the_tags ( $tag_list ) {
+	$tag_list = str_replace( 'rel="tag"', 'class="btn btn-outline-dark btn-sm opacity-60 text-nowrap" rel="tag"', $tag_list ); 
+	return $tag_list;
 }

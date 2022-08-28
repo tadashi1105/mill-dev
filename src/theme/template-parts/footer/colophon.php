@@ -7,7 +7,7 @@
  */
 ?>
 <div id="colophon" class="pb-6">
-	<div class="container px-1 px-md-6">
+	<div class="container">
 		<?php if ( has_nav_menu( 'footer-nav' ) ) :
 			wp_nav_menu( [
 				'theme_location' => 'footer-nav',

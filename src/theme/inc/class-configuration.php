@@ -30,7 +30,7 @@ class Mill_Configuration {
 	public function __construct() {
 		global $content_width;
 		if ( ! isset( $content_width ) ) {
-			$content_width = apply_filters( 'mill_content_width', 1140 );
+			$content_width = apply_filters( 'mill_content_width', 1360 );
 		}
 
 		load_theme_textdomain( 'mill', get_template_directory() . '/languages' );
@@ -40,7 +40,7 @@ class Mill_Configuration {
 		add_theme_support( 'title-tag' );
 
 		add_theme_support( 'post-thumbnails' );
-		// set_post_thumbnail_size( 736, 414 );
+		set_post_thumbnail_size( 1360, 9999 );
 
 		add_theme_support( 'html5', [
 			'search-form',
@@ -109,7 +109,6 @@ class Mill_Configuration {
 		}
 
 		wp_enqueue_style( 'style', get_stylesheet_uri() );
-		wp_enqueue_style( 'awesome-font', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css', [], $version, 'all' );
 
 		wp_enqueue_script('header-js', get_template_directory_uri() . '/js/header-bundle.js', null, $version, false);
 		wp_enqueue_script('footer-js', get_template_directory_uri() . '/js/footer-bundle.js', null, $version, true);

@@ -9,7 +9,7 @@
 get_header();
 ?>
 <div id="content">
-	<div class="container px-1 px-md-6">
+	<div class="container">
 		<div class="row">
 			<div class="col-lg-8">
 				<main id="main" class="d-flex flex-column gap-4 mb-8" role="main">
@@ -21,8 +21,8 @@ get_header();
 							else :
 								get_template_part( 'template-parts/content/content-single' );
 								the_post_navigation( [
-									'next_text' => '<p class="small">' . esc_html__( 'Next post', 'mill' ) . '</p><p class="text-truncate">%title</p>',
-									'prev_text' => '<p class="small">' . esc_html__( 'Previous post', 'mill' ) . '</p><p class="text-truncate">%title</p>',
+									'prev_text' => '<p class="small">' . esc_html__( __( 'Previous Post' ) ) . '</p><p class="text-truncate">%title</p>',
+									'next_text' => '<p class="small">' . esc_html__( __( 'Next Post' ) ) . '</p><p class="text-truncate">%title</p>',
 								] );
 							endif;
 						endwhile;
