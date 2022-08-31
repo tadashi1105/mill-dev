@@ -8,7 +8,7 @@
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class( [ 'p-2', 'p-sm-6', 'shadow', 'bg-surface-primary', 'rounded-4' ] ); ?>>
 	<header class="mb-4">
-		<?php the_title( '<h1 class="h2 text-break>', '</h1>' ); ?>
+		<?php the_title( '<h1 class="h2 text-break">', '</h1>' ); ?>
 	</header>
 	<div class="mb-4">
 		<?php get_template_part( 'template-parts/post-thumbnail' ); ?>
