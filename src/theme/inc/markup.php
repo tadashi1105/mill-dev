@@ -22,27 +22,27 @@ add_filter( 'navigation_markup_template', 'mill_navigation_markup_template', 10,
 
 function mill_paginate_links_output( $r, $args ) {
 	if ( in_array( $args['class'], ['pagination', 'comments-pagination'] ) ) {
-		$r = str_replace( 'class="prev page-numbers"', 'class="prev page-numbers d-inline-flex justify-content-center align-items-center text-body rounded-4 bg-surface-primary shadow p-3"', $r ); 
-		$r = str_replace( 'class="page-numbers current"', 'class="page-numbers current d-inline-flex justify-content-center align-items-center text-body font-bolder rounded-4 bg-surface-primary shadow p-3"', $r ); 
-		$r = str_replace( 'class="page-numbers"', 'class="page-numbers d-inline-flex justify-content-center align-items-center text-body rounded-4 bg-surface-primary shadow p-3"', $r ); 
-		$r = str_replace( 'class="page-numbers dots"', 'class="page-numbers dots d-inline-flex justify-content-center align-items-center text-body rounded-4 p-3"', $r ); 
-		$r = str_replace( 'class="next page-numbers"', 'class="next page-numbers d-inline-flex justify-content-center align-items-center text-body rounded-4 bg-surface-primary shadow p-3"', $r ); 
+		$r = str_replace( 'class="prev page-numbers"', 'class="prev page-numbers d-inline-flex justify-content-center align-items-center text-body rounded-4 bg-surface-primary shadow p-3"', $r );
+		$r = str_replace( 'class="page-numbers current"', 'class="page-numbers current d-inline-flex justify-content-center align-items-center text-body font-bolder rounded-4 bg-surface-primary shadow p-3"', $r );
+		$r = str_replace( 'class="page-numbers"', 'class="page-numbers d-inline-flex justify-content-center align-items-center text-body rounded-4 bg-surface-primary shadow p-3"', $r );
+		$r = str_replace( 'class="page-numbers dots"', 'class="page-numbers dots d-inline-flex justify-content-center align-items-center text-body rounded-4 p-3"', $r );
+		$r = str_replace( 'class="next page-numbers"', 'class="next page-numbers d-inline-flex justify-content-center align-items-center text-body rounded-4 bg-surface-primary shadow p-3"', $r );
 	}
 	return $r;
 }
 add_filter( 'paginate_links_output', 'mill_paginate_links_output', 10, 2 );
 
 function mill_wp_link_pages( $output, $args ) {
-	$output = str_replace( 'class="post-page-numbers current"', 'class="post-page-numbers current d-inline-flex justify-content-center align-items-center text-body font-bolder rounded-4 bg-surface-primary shadow p-3"', $output ); 
-	$output = str_replace( 'class="post-page-numbers"', 'class="post-page-numbers d-inline-flex justify-content-center align-items-center text-body rounded-4 bg-surface-primary shadow p-3"', $output ); 
+	$output = str_replace( 'class="post-page-numbers current"', 'class="post-page-numbers current d-inline-flex justify-content-center align-items-center text-body font-bolder rounded-4 bg-surface-primary shadow p-3"', $output );
+	$output = str_replace( 'class="post-page-numbers"', 'class="post-page-numbers d-inline-flex justify-content-center align-items-center text-body rounded-4 bg-surface-primary shadow p-3"', $output );
 	return $output;
 }
 add_filter( 'wp_link_pages', 'mill_wp_link_pages', 10, 2 );
 
 function mill_previous_post_link ( $output, $format, $link, $post, $adjacent ) {
 	if ( 'previous' === $adjacent ) {
-		$output = str_replace( 'class="nav-previous"', 'class="nav-previous overflow-hidden p-2 p-sm-6 bg-surface-primary rounded-4 shadow w-full"', $output ); 
-		$output = str_replace( 'rel="prev"', 'class="link-dark opacity-60" rel="prev"', $output ); 
+		$output = str_replace( 'class="nav-previous"', 'class="nav-previous overflow-hidden p-2 p-sm-6 bg-surface-primary rounded-4 shadow w-full"', $output );
+		$output = str_replace( 'rel="prev"', 'class="link-dark opacity-60" rel="prev"', $output );
 	}
 	return $output;
 }
@@ -50,8 +50,8 @@ add_filter( 'previous_post_link', 'mill_previous_post_link', 10, 5 );
 
 function mill_next_post_link ( $output, $format, $link, $post, $adjacent ) {
 	if ( 'next' === $adjacent ) {
-		$output = str_replace( 'class="nav-next"', 'class="nav-next overflow-hidden p-2 p-sm-6 bg-surface-primary rounded-4 shadow w-full"', $output ); 
-		$output = str_replace( 'rel="next"', 'class="link-dark opacity-60" rel="next"', $output ); 
+		$output = str_replace( 'class="nav-next"', 'class="nav-next overflow-hidden p-2 p-sm-6 bg-surface-primary rounded-4 shadow w-full"', $output );
+		$output = str_replace( 'rel="next"', 'class="link-dark opacity-60" rel="next"', $output );
 	}
 	return $output;
 }
@@ -168,7 +168,7 @@ function mill_comment( $comment, $args, $depth ) {
 <<?php echo $tag; ?> id="comment-<?php comment_ID(); ?>" <?php comment_class( $comment_class, $comment ); ?>>
 	<article id="div-comment-<?php comment_ID(); ?>" class="comment-body d-flex flex-row gap-2">
 		<div class="comment-author vcard flex-shrink-0">
-			<?php if ( 0 != $args['avatar_size'] ) : 
+			<?php if ( 0 != $args['avatar_size'] ) :
 				echo get_avatar( $comment, $args['avatar_size'], '', '', [ 'class' => 'rounded-circle' ] );
 			endif; ?>
 		</div><!-- .comment-author -->
@@ -261,15 +261,15 @@ add_filter( 'wp_generate_tag_cloud_data', 'mill_wp_generate_tag_cloud_data' );
 
 function mill_the_category ( $thelist, $separator ) {
 	if ( 'none' === $separator) {
-		$thelist = str_replace( $separator, '', $thelist ); 
+		$thelist = str_replace( $separator, '', $thelist );
 	}
-	$thelist = str_replace( 'rel="category', 'class="link-dark opacity-60" rel="category', $thelist ); 
+	$thelist = str_replace( 'rel="category', 'class="link-dark opacity-60" rel="category', $thelist );
 	return $thelist;
 }
 add_filter( 'the_category', 'mill_the_category', 10, 2 );
 
 function mill_the_tags ( $tag_list ) {
-	$tag_list = str_replace( 'rel="tag"', 'class="btn btn-outline-dark btn-sm opacity-60 text-nowrap" rel="tag"', $tag_list ); 
+	$tag_list = str_replace( 'rel="tag"', 'class="btn btn-outline-dark btn-sm opacity-60 text-nowrap" rel="tag"', $tag_list );
 	return $tag_list;
 }
 add_filter( 'the_tags', 'mill_the_tags' );

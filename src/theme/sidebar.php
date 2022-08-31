@@ -7,5 +7,5 @@
  */
 
 if ( is_active_sidebar( 1 ) ) :
-    dynamic_sidebar( 1 );
+	dynamic_sidebar( 1 );
 endif;
