@@ -1,6 +1,5 @@
 <?php
 
-add_filter( 'navigation_markup_template', 'mill_navigation_markup_template', 10, 2 );
 function mill_navigation_markup_template( $template, $class ) {
 	if ( in_array( $class, ['pagination', 'comments-pagination'] ) ) {
 		$template = '
@@ -19,8 +18,8 @@ function mill_navigation_markup_template( $template, $class ) {
 	}
 		return $template;
 }
+add_filter( 'navigation_markup_template', 'mill_navigation_markup_template', 10, 2 );
 
-add_filter( 'paginate_links_output', 'mill_paginate_links_output', 10, 2 );
 function mill_paginate_links_output( $r, $args ) {
 	if ( in_array( $args['class'], ['pagination', 'comments-pagination'] ) ) {
 		$r = str_replace( 'class="prev page-numbers"', 'class="prev page-numbers d-inline-flex justify-content-center align-items-center text-body rounded-4 bg-surface-primary shadow p-3"', $r ); 
@@ -31,15 +30,15 @@ function mill_paginate_links_output( $r, $args ) {
 	}
 	return $r;
 }
+add_filter( 'paginate_links_output', 'mill_paginate_links_output', 10, 2 );
 
-add_filter( 'wp_link_pages', 'mill_wp_link_pages', 10, 2 );
 function mill_wp_link_pages( $output, $args ) {
 	$output = str_replace( 'class="post-page-numbers current"', 'class="post-page-numbers current d-inline-flex justify-content-center align-items-center text-body font-bolder rounded-4 bg-surface-primary shadow p-3"', $output ); 
 	$output = str_replace( 'class="post-page-numbers"', 'class="post-page-numbers d-inline-flex justify-content-center align-items-center text-body rounded-4 bg-surface-primary shadow p-3"', $output ); 
 	return $output;
 }
+add_filter( 'wp_link_pages', 'mill_wp_link_pages', 10, 2 );
 
-add_filter( 'previous_post_link', 'mill_previous_post_link', 10, 5 );
 function mill_previous_post_link ( $output, $format, $link, $post, $adjacent ) {
 	if ( 'previous' === $adjacent ) {
 		$output = str_replace( 'class="nav-previous"', 'class="nav-previous overflow-hidden p-2 p-sm-6 bg-surface-primary rounded-4 shadow w-full"', $output ); 
@@ -47,8 +46,8 @@ function mill_previous_post_link ( $output, $format, $link, $post, $adjacent ) {
 	}
 	return $output;
 }
+add_filter( 'previous_post_link', 'mill_previous_post_link', 10, 5 );
 
-add_filter( 'next_post_link', 'mill_next_post_link', 10, 5 );
 function mill_next_post_link ( $output, $format, $link, $post, $adjacent ) {
 	if ( 'next' === $adjacent ) {
 		$output = str_replace( 'class="nav-next"', 'class="nav-next overflow-hidden p-2 p-sm-6 bg-surface-primary rounded-4 shadow w-full"', $output ); 
@@ -56,13 +55,13 @@ function mill_next_post_link ( $output, $format, $link, $post, $adjacent ) {
 	}
 	return $output;
 }
+add_filter( 'next_post_link', 'mill_next_post_link', 10, 5 );
 
 /**
  *
  *
  * @since Mill 1.0.0
  */
-add_filter( 'comment_form_defaults', 'mill_comment_form_defaults' );
 function mill_comment_form_defaults( $defaults ) {
 	$commenter = wp_get_current_commenter();
 	$req = get_option( 'require_name_email' );
@@ -149,6 +148,7 @@ function mill_comment_form_defaults( $defaults ) {
 
 	return $defaults;
 }
+add_filter( 'comment_form_defaults', 'mill_comment_form_defaults' );
 
 /**
  *
@@ -187,7 +187,7 @@ function mill_comment( $comment, $args, $depth ) {
 				);
 				edit_comment_link(); ?>
 			</div><!-- .comment-metadata -->
-			<div class="comment-content mill-typography">
+			<div class="comment-content article mill-typography">
 				<?php if ( '0' == $comment->comment_approved ) : ?>
 					<p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' ); ?></p>
 				<?php endif; ?>
@@ -205,16 +205,15 @@ function mill_comment( $comment, $args, $depth ) {
 <?php }
 
 // wp_nav_menuのliにclass追加
-add_filter( 'nav_menu_css_class', 'mill_add_additional_class_on_li', 10, 3 );
 function mill_add_additional_class_on_li( $classes, $item, $args ) {
   if ( isset( $args['mill_li_class'] ) ) {
     $classes[] = $args['mill_li_class'];
   }
   return $classes;
 }
+add_filter( 'nav_menu_css_class', 'mill_add_additional_class_on_li', 10, 3 );
 
 // wp_nav_menuのaにclass追加
-add_filter( 'nav_menu_link_attributes', 'mill_add_additional_class_on_a', 10, 3 );
 function mill_add_additional_class_on_a( $atts, $item, $args ) {
 	if ( isset( $args['mill_a_class'] ) ) {
 		$atts['class'] = $args['mill_a_class'];
@@ -224,8 +223,8 @@ function mill_add_additional_class_on_a( $atts, $item, $args ) {
 	}
 	return $atts;
 }
+add_filter( 'nav_menu_link_attributes', 'mill_add_additional_class_on_a', 10, 3 );
 
-add_filter( 'category_list_link_attributes', 'mill_add_category_list_link_attributes', 10, 4 );
 function mill_add_category_list_link_attributes ( $atts, $category, $depth, $args ) {
 	if ( 'list'  === $args['style'] ) {
 		$atts['class'] = 'link-dark opacity-60';
@@ -233,22 +232,22 @@ function mill_add_category_list_link_attributes ( $atts, $category, $depth, $arg
 		return $atts;
 	}
 	if ( 'mill-badge'  === $args['style'] ) {
-		$atts['class'] = 'badge rounded-pill bg-primary';
+		$atts['class'] = 'btn btn-outline-primary btn-sm px-2 py-1';
 		$atts['rel'] = 'category tag';
 		return $atts;
 	}
 	return $atts;
 }
+add_filter( 'category_list_link_attributes', 'mill_add_category_list_link_attributes', 10, 4 );
 
-add_filter( 'category_css_class', 'mill_add_category_css_class', 10, 4 );
 function mill_add_category_css_class ( $css_classes, $category, $depth, $args ) {
 	if ( 'list'  === $args['style'] ) {
 		$css_classes[] = 'list-group-item';
 	}
 	return $css_classes;
 }
+add_filter( 'category_css_class', 'mill_add_category_css_class', 10, 4 );
 
-add_filter( 'wp_generate_tag_cloud_data', 'mill_wp_generate_tag_cloud_data' );
 function mill_wp_generate_tag_cloud_data ( $tags_data ) {
 	$tags_data = array_map( function( $value ){
 		if ( isset( $value['class'] ) ) {
@@ -258,8 +257,8 @@ function mill_wp_generate_tag_cloud_data ( $tags_data ) {
 	}, $tags_data);
 	return $tags_data;
 }
+add_filter( 'wp_generate_tag_cloud_data', 'mill_wp_generate_tag_cloud_data' );
 
-add_filter( 'the_category', 'mill_the_category', 10, 2 );
 function mill_the_category ( $thelist, $separator ) {
 	if ( 'none' === $separator) {
 		$thelist = str_replace( $separator, '', $thelist ); 
@@ -267,9 +266,10 @@ function mill_the_category ( $thelist, $separator ) {
 	$thelist = str_replace( 'rel="category', 'class="link-dark opacity-60" rel="category', $thelist ); 
 	return $thelist;
 }
+add_filter( 'the_category', 'mill_the_category', 10, 2 );
 
-add_filter( 'the_tags', 'mill_the_tags' );
 function mill_the_tags ( $tag_list ) {
 	$tag_list = str_replace( 'rel="tag"', 'class="btn btn-outline-dark btn-sm opacity-60 text-nowrap" rel="tag"', $tag_list ); 
 	return $tag_list;
 }
+add_filter( 'the_tags', 'mill_the_tags' );

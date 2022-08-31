@@ -10,10 +10,10 @@
  *
  * @since Mill 1.0.0
  */
-add_action( 'after_setup_theme', 'mill_parent_theme_setup', 99999 );
 function mill_parent_theme_setup() {
 	$mill = new Mill_Configuration();
 }
+add_action( 'after_setup_theme', 'mill_parent_theme_setup', 99999 );
 
 /**
  *
