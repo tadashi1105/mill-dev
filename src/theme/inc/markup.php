@@ -206,8 +206,8 @@ function mill_comment( $comment, $args, $depth ) {
 
 // wp_nav_menuのliにclass追加
 function mill_add_additional_class_on_li( $classes, $item, $args ) {
-  if ( isset( $args['mill_li_class'] ) ) {
-    $classes[] = $args['mill_li_class'];
+  if ( isset( $args->mill_li_class ) ) {
+    $classes[] = $args->mill_li_class;
   }
   return $classes;
 }
@@ -215,8 +215,8 @@ add_filter( 'nav_menu_css_class', 'mill_add_additional_class_on_li', 10, 3 );
 
 // wp_nav_menuのaにclass追加
 function mill_add_additional_class_on_a( $atts, $item, $args ) {
-	if ( isset( $args['mill_a_class'] ) ) {
-		$atts['class'] = $args['mill_a_class'];
+	if ( isset( $args->mill_a_class ) ) {
+		$atts['class'] = $args->mill_a_class;
 		if ( $item->current ) {
 			$atts['class'] = $atts['class'] . ' active';
 		}
