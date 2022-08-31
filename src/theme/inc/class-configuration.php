@@ -110,7 +110,7 @@ class Mill_Configuration {
 
 		wp_enqueue_style( 'style', get_stylesheet_uri() );
 
-		wp_enqueue_script('header-js', get_template_directory_uri() . '/js/header-bundle.js', null, $version, false);
-		wp_enqueue_script('footer-js', get_template_directory_uri() . '/js/footer-bundle.js', null, $version, true);
+		// wp_enqueue_script('header-js', get_template_directory_uri() . '/js/header-bundle.js', null, $version, false);
+		// wp_enqueue_script('footer-js', get_template_directory_uri() . '/js/footer-bundle.js', null, $version, true);
 	}
 }
