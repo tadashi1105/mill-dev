@@ -14,22 +14,69 @@ This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 */
 
-@use "@webpixels/css";
-// @use "mill";
+// @import "@webpixels/css";
 
-.home.blog .wp-post-image,
-.search .wp-post-image,
-.archive .wp-post-image {
-    width: 4rem;
-    height: 4rem;
+@import "@webpixels/css/core";
+
+// @import "@webpixels/css/base";
+@import "@webpixels/css/base/root";
+@import "@webpixels/css/base/reboot";
+@import "@webpixels/css/base/images";
+// Grid
+@import "@webpixels/css/base/grid";
+// Typography
+@import "@webpixels/css/base/type";
+
+// @import "@webpixels/css/forms";
+@import "@webpixels/css/forms/form";
+// @import "@webpixels/css/forms/form-stacked";
+// @import "@webpixels/css/forms/input-group";
+// @import "@webpixels/css/forms/form-check";
+// @import "@webpixels/css/forms/form-color";
+// @import "@webpixels/css/forms/validation";
+
+// @import "@webpixels/css/components";
+// @import "@webpixels/css/components/accordions";
+// @import "@webpixels/css/components/alerts";
+// @import "@webpixels/css/components/avatars";
+// @import "@webpixels/css/components/badges";
+// @import "@webpixels/css/components/breadcrumbs";
+@import "@webpixels/css/components/buttons";
+// @import "@webpixels/css/components/cards";
+// @import "@webpixels/css/components/carousels";
+// @import "@webpixels/css/components/dropdowns";
+// @import "@webpixels/css/components/frames";
+// @import "@webpixels/css/components/icons"; 
+@import "@webpixels/css/components/list-groups";
+// @import "@webpixels/css/components/modals";
+@import "@webpixels/css/components/navbars";
+@import "@webpixels/css/components/navs";
+// @import "@webpixels/css/components/omnisearches";
+// @import "@webpixels/css/components/paginations";
+// @import "@webpixels/css/components/popovers";
+// @import "@webpixels/css/components/progress";
+// @import "@webpixels/css/components/shapes";
+// @import "@webpixels/css/components/spinners";
+// @import "@webpixels/css/components/tables";
+// @import "@webpixels/css/components/toasts";
+// @import "@webpixels/css/components/tooltips";
+
+// @import "@webpixels/css/extra";
+@import "@webpixels/css/extra/article";
+// @import "@webpixels/css/extra/section-step";
+
+// @import '@webpixels/css/utilities';
+@import "@webpixels/css/utilities/utilities";
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/utilities/api";
+
+.wp-post-image {
     object-fit: cover;
 }
 
 .page .wp-post-image,
 .single .wp-post-image {
-    width: 100%;
     aspect-ratio: 16 / 9;
-    object-fit: cover;
 }
 
 .post-page-numbers,
@@ -87,7 +134,8 @@ Use it to make something cool, have fun, and share what you've learned with othe
     }
 }
 
-.mill-typography {
+.article.mill-typography {
+    line-height: var(--x-body-line-height);
     word-break: break-word;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -105,10 +153,13 @@ Use it to make something cool, have fun, and share what you've learned with othe
             margin-top: 3rem;
         }
         p,
+        ul,
+        ol,
+        dl,
+        pre,
         blockquote,
         table,
         aside,
-        div,
         figure {
             margin-top: 1rem;
         }
@@ -116,60 +167,47 @@ Use it to make something cool, have fun, and share what you've learned with othe
     blockquote {
         padding: 0.5rem 1rem;
         font-size: 0.875rem;
-        border-left: 0.25rem solid css.$gray-400;
-        border-radius: 0.25rem;
-        footer {
-            display: block;
-            font-size: 80%;
-            line-height: 1.5;
-            &:before {
-                content: "\2014 \00A0";
-            }
-        }
     }
     > h2 {
         padding-bottom: 0.5rem;
-        border-bottom: 0.25rem solid css.$primary;
+        border-bottom: 0.25rem solid $secondary;
     }
     > h3,
     > h4,
     > h5,
     > h6 {
         padding: 0.25rem 0.5rem;
-        border-left: 0.25rem solid css.$primary;
+        border-left: 0.25rem solid $secondary;
+    }
+    > p {
+        margin-bottom: 0;
     }
     table {
         width: 100%;
         max-width: 100%;
-        border: 1px solid css.$border-color;
+        border: 1px solid $border-color;
         th,
         td {
-            padding: css.$table-cell-padding-y-sm;
+            padding: $table-cell-padding-y-sm;
             line-height: 1.5;
             vertical-align: top;
             border: 1px solid #dfdfdf;
         }
         thead th {
             vertical-align: bottom;
-            border-bottom: 2px solid css.$border-color;
-            background-color: rgba(css.$black, css.$table-active-bg-factor);
+            border-bottom: 2px solid $border-color;
+            background-color: rgba($black, $table-active-bg-factor);
         }
         thead td {
             border-bottom-width: 2px;
         }
         tbody + tbody {
-            border-top: 2px solid css.$border-color;
+            border-top: 2px solid $border-color;
         }
-    }
-    pre {
-        padding: 1rem;
-        background-color: #f7f7f9;
-        border: 1px solid #ccc;
-        border-radius: 2px;
     }
     aside {
         padding: 1rem;
-        border: 1px solid css.$border-color;
+        border: 1px solid $border-color;
         border-radius: 2px;
         > h2,
         > h3,
@@ -177,12 +215,12 @@ Use it to make something cool, have fun, and share what you've learned with othe
         > h5,
         > h6 {
             padding: 0.25rem 0.5rem;
-            border-left: 3px solid css.$primary;
+            border-left: 3px solid $secondary;
             &:first-child {
                 padding: 0;
                 padding-bottom: 0.5rem;
                 border-left: 0;
-                border-bottom: 1px solid css.$border-color;
+                border-bottom: 1px solid $border-color;
             }
         }
         dl:last-child,
