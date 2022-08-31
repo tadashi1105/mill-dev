@@ -10,7 +10,7 @@ if ( ! post_password_required() && ! is_attachment() && has_post_thumbnail() ) :
 	<figure id="post-thumbnail">
 		<?php the_post_thumbnail( 'post-thumbnail', [
 			'alt' => the_title_attribute( [ 'echo' => false ] ),
-			'class' => 'rounded-4',
+			'class' => ( is_singular() ) ? 'w-full rounded-4' : 'w-16 h-16 w-sm-48 h-sm-48 rounded-4',
 		] ); ?>
 		<?php if ( is_singular() ) : ?>
 			<?php $mill_caption = get_post( get_post_thumbnail_id() )->post_excerpt; ?>
