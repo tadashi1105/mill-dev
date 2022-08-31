@@ -17,7 +17,7 @@
 <?php wp_body_open(); ?>
 <a class="visually-hidden-focusable" href="#content"><?php esc_html_e( 'Skip to content', 'mill' ); ?></a>
 <div id="page">
-<header id="header" class="mb-8" role="banner">
+<header id="header" class="mb-4 mb-sm-8" role="banner">
 	<?php get_template_part( 'template-parts/header/navbar' ); ?>
 	<?php get_template_part( 'template-parts/header/page-header' ); ?>
 </header><!-- #header -->

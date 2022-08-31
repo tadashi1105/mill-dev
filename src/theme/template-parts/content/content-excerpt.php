@@ -6,7 +6,7 @@
  * @since Mill 1.0.0
  */
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class( [ 'd-flex', 'align-items-center', 'gap-2', 'gap-sm-6', 'p-2', 'p-sm-6', 'shadow', 'bg-surface-primary', 'rounded-4' ] ); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( [ 'd-flex', 'align-items-center', 'gap-2', 'gap-sm-6', 'p-2', 'p-sm-6', 'shadow', 'bg-surface-primary', 'rounded-4', 'position-relative' ] ); ?>>
 	<?php if ( ! post_password_required() && has_post_thumbnail() ) : ?>
 		<div class="flex-shrink-0">
 			<a href="<?php the_permalink();?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
