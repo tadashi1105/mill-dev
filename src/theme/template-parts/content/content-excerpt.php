@@ -35,14 +35,16 @@
 					})(),
 				] ); ?>
 			</div>
-			<h2 class="h5 text-break"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
+			<h2 class="h5 text-break"><a class="h5" href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
 		</header>
 		<div class="d-none d-sm-block">
-			<?php the_excerpt(); ?>
+			<a class="text-body text-sm" href="<?php the_permalink(); ?>" rel="bookmark">
+				<?php the_excerpt(); ?>
+			</a>
 			<?php
 			// Author
 			printf(
-				'<p class="small mt-2">%1$s<a class="link-dark opacity-60" href="%2$s" rel="author">%3$s</a>%4$s</p>',
+				'<p class="text-sm mt-2">%1$s<a class="link-dark opacity-60" href="%2$s" rel="author">%3$s</a>%4$s</p>',
 				esc_html__( 'By ', 'mill' ),
 				esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 				esc_html( get_the_author() ),

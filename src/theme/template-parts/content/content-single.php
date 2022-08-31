@@ -12,7 +12,7 @@
 		<?php
 			// Author
 			printf(
-				'<p class="small mt-2">%1$s<a class="link-dark opacity-60" href="%2$s" rel="author">%3$s</a>%4$s</p>',
+				'<p class="text-sm mt-2">%1$s<a class="link-dark opacity-60" href="%2$s" rel="author">%3$s</a>%4$s</p>',
 				esc_html__( 'By ', 'mill' ),
 				esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 				esc_html( get_the_author() ),
@@ -42,7 +42,7 @@
 	<div class="mb-4">
 		<?php get_template_part( 'template-parts/post-thumbnail' ); ?>
 	</div>
-	<div class="entry-content mill-typography mb-4">
+	<div class="entry-content article mill-typography mb-4">
 		<?php the_content();
 		wp_link_pages( [
 			'before' => '<nav class="d-flex flex-row justify-content-center gap-2" aria-label="' . esc_attr__( __( 'Pages:' ) ) . '">',

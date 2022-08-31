@@ -22,7 +22,7 @@
 			] );
 		endif; ?>
 		<div id="copyright">
-			<p class="text-light text-center"><small>&copy; 2013-<?php echo date( 'Y' ); ?> <a class="link-light" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>. All rights reserved.</small></p>
+			<p class="text-light text-center text-sm">&copy; 2013-<?php echo date( 'Y' ); ?> <a class="link-light" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>. All rights reserved.</p>
 		</div><!-- #copyright -->
 	</div>
 </div><!-- #colophon -->

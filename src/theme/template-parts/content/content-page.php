@@ -13,7 +13,7 @@
 	<div class="mb-4">
 		<?php get_template_part( 'template-parts/post-thumbnail' ); ?>
 	</div>
-	<div class="entry-content mill-typography">
+	<div class="entry-content article mill-typography">
 		<?php the_content();
 		wp_link_pages( [
 			'before' => '<nav class="d-flex flex-row justify-content-center gap-2" aria-label="' . esc_attr__( __( 'Pages:' ) ) . '">',
