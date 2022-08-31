@@ -24,7 +24,7 @@
 					'style'              => 'mill-badge',
 					'taxonomy'           => 'category',
 					'title_li'           => '',
-					'number' => 3,
+					'number' => 1,
 					'include' => (function () use ( $post ) {
 						$post_terms = wp_get_object_terms( $post->ID, 'category', array( 'fields' => 'ids' ) );
 						$term_ids = '';
