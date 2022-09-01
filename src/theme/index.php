@@ -8,7 +8,7 @@
 
 get_header(); ?>
 <div id="content">
-	<div class="container gx-2 gx-sm-6">
+	<div class="container gx-2 gx-sm-6 overflow-hidden">
 		<div class="row">
 			<div class="col-lg-8">
                 <main id="main" class="d-flex flex-column gap-2 gap-sm-4 mb-4 mb-sm-8" role="main">

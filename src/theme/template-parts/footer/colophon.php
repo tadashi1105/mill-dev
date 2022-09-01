@@ -7,7 +7,7 @@
  */
 ?>
 <div id="colophon" class="pb-6">
-	<div class="container gx-2 gx-sm-6">
+	<div class="container gx-2 gx-sm-6 overflow-hidden">
 		<?php if ( has_nav_menu( 'footer-nav' ) ) :
 			wp_nav_menu( [
 				'theme_location' => 'footer-nav',
