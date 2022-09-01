@@ -22,19 +22,21 @@ add_filter( 'navigation_markup_template', 'mill_navigation_markup_template', 10,
 
 function mill_paginate_links_output( $r, $args ) {
 	if ( in_array( $args['class'], ['pagination', 'comments-pagination'] ) ) {
-		$r = str_replace( 'class="prev page-numbers"', 'class="prev page-numbers d-inline-flex justify-content-center align-items-center text-body rounded-4 bg-surface-primary shadow p-3"', $r );
-		$r = str_replace( 'class="page-numbers current"', 'class="page-numbers current d-inline-flex justify-content-center align-items-center text-body font-bolder rounded-4 bg-surface-primary shadow p-3"', $r );
-		$r = str_replace( 'class="page-numbers"', 'class="page-numbers d-inline-flex justify-content-center align-items-center text-body rounded-4 bg-surface-primary shadow p-3"', $r );
-		$r = str_replace( 'class="page-numbers dots"', 'class="page-numbers dots d-inline-flex justify-content-center align-items-center text-body rounded-4 p-3"', $r );
-		$r = str_replace( 'class="next page-numbers"', 'class="next page-numbers d-inline-flex justify-content-center align-items-center text-body rounded-4 bg-surface-primary shadow p-3"', $r );
+		$common_class = 'd-inline-flex justify-content-center align-items-center text-body rounded-4 bg-surface-primary shadow p-3';
+		$r = str_replace( 'class="prev page-numbers"', 'class="prev page-numbers ' . $common_class . '"', $r );
+		$r = str_replace( 'class="page-numbers current"', 'class="page-numbers current font-bolder ' . $common_class . '"', $r );
+		$r = str_replace( 'class="page-numbers"', 'class="page-numbers ' . $common_class . '"', $r );
+		$r = str_replace( 'class="page-numbers dots"', 'class="page-numbers dots ' . $common_class . '"', $r );
+		$r = str_replace( 'class="next page-numbers"', 'class="next page-numbers ' . $common_class . '"', $r );
 	}
 	return $r;
 }
 add_filter( 'paginate_links_output', 'mill_paginate_links_output', 10, 2 );
 
 function mill_wp_link_pages( $output, $args ) {
-	$output = str_replace( 'class="post-page-numbers current"', 'class="post-page-numbers current d-inline-flex justify-content-center align-items-center text-body font-bolder rounded-4 bg-surface-primary shadow p-3"', $output );
-	$output = str_replace( 'class="post-page-numbers"', 'class="post-page-numbers d-inline-flex justify-content-center align-items-center text-body rounded-4 bg-surface-primary shadow p-3"', $output );
+	$common_class = 'd-inline-flex justify-content-center align-items-center text-body rounded-4 bg-surface-primary shadow p-3';
+	$output = str_replace( 'class="post-page-numbers current"', 'class="post-page-numbers current font-bolder ' . $common_class . '"', $output );
+	$output = str_replace( 'class="post-page-numbers"', 'class="post-page-numbers ' . $common_class . '"', $output );
 	return $output;
 }
 add_filter( 'wp_link_pages', 'mill_wp_link_pages', 10, 2 );
@@ -226,11 +228,6 @@ function mill_add_additional_class_on_a( $atts, $item, $args ) {
 add_filter( 'nav_menu_link_attributes', 'mill_add_additional_class_on_a', 10, 3 );
 
 function mill_add_category_list_link_attributes ( $atts, $category, $depth, $args ) {
-	if ( 'list'  === $args['style'] ) {
-		$atts['class'] = 'link-dark opacity-60';
-		$atts['rel'] = 'category';
-		return $atts;
-	}
 	if ( 'mill-badge'  === $args['style'] ) {
 		$atts['class'] = 'btn btn-outline-primary btn-sm px-2 py-1';
 		$atts['rel'] = 'category tag';
@@ -240,18 +237,10 @@ function mill_add_category_list_link_attributes ( $atts, $category, $depth, $arg
 }
 add_filter( 'category_list_link_attributes', 'mill_add_category_list_link_attributes', 10, 4 );
 
-function mill_add_category_css_class ( $css_classes, $category, $depth, $args ) {
-	if ( 'list'  === $args['style'] ) {
-		$css_classes[] = 'list-group-item';
-	}
-	return $css_classes;
-}
-add_filter( 'category_css_class', 'mill_add_category_css_class', 10, 4 );
-
 function mill_wp_generate_tag_cloud_data ( $tags_data ) {
 	$tags_data = array_map( function( $value ){
 		if ( isset( $value['class'] ) ) {
-			$value['class'] = $value['class'] . ' btn btn-outline-dark btn-sm opacity-60 text-nowrap';
+			$value['class'] = $value['class'] . ' btn btn-outline-dark btn-sm opacity-60 text-nowrap px-2 py-1';
 		}
 		return $value;
 	}, $tags_data);
@@ -269,7 +258,7 @@ function mill_the_category ( $thelist, $separator ) {
 add_filter( 'the_category', 'mill_the_category', 10, 2 );
 
 function mill_the_tags ( $tag_list ) {
-	$tag_list = str_replace( 'rel="tag"', 'class="btn btn-outline-dark btn-sm opacity-60 text-nowrap" rel="tag"', $tag_list );
+	$tag_list = str_replace( 'rel="tag"', 'class="btn btn-outline-dark btn-sm opacity-60 text-nowrap px-2 py-1" rel="tag"', $tag_list );
 	return $tag_list;
 }
 add_filter( 'the_tags', 'mill_the_tags' );
