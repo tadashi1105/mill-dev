@@ -6,14 +6,14 @@
  * @since Mill 1.0.0
  */
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class( [ 'd-flex', 'align-items-center', 'gap-2', 'gap-sm-6', 'p-2', 'p-sm-6', 'shadow', 'bg-surface-primary', 'rounded-4', 'position-relative' ] ); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( [ 'd-flex', 'align-items-start', 'gap-2', 'gap-sm-6', 'p-2', 'p-sm-6', 'shadow', 'bg-surface-primary', 'rounded-4', 'position-relative' ] ); ?>>
 	<?php if ( ! post_password_required() && has_post_thumbnail() ) : ?>
 		<div class="flex-shrink-0">
 			<a href="<?php the_permalink();?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 				<?php get_template_part( 'template-parts/post-thumbnail' ); ?>
 			</a>
 		</div>
-	<?php endif; ?>	
+	<?php endif; ?>
 	<div class="flex-grow-1">
 		<header class="header">
 			<div class="d-none d-sm-block mb-2">
@@ -52,7 +52,7 @@
 				sprintf(
 					'<span class="mx-2">·</span><time class="entry-date published %2$s" datetime="%3$s" aria-label="%1$s">%4$s</time>%5$s',
 					esc_html__( 'Published', 'mill' ),
-					(get_the_time( 'U' ) === get_the_modified_time( 'U' )) ? 'updated' : '', 
+					(get_the_time( 'U' ) === get_the_modified_time( 'U' )) ? 'updated' : '',
 					esc_attr( get_the_date( 'c' ) ),
 					esc_html( get_the_date() ),
 					(function () {
