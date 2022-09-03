@@ -240,7 +240,7 @@ add_filter( 'category_list_link_attributes', 'mill_add_category_list_link_attrib
 function mill_wp_generate_tag_cloud_data ( $tags_data ) {
 	$tags_data = array_map( function( $value ){
 		if ( isset( $value['class'] ) ) {
-			$value['class'] = $value['class'] . ' btn btn-outline-dark btn-sm opacity-60 text-nowrap px-2 py-1';
+			$value['class'] = $value['class'] . ' badge bg-soft-secondary text-xs text-body font-regular m-0';
 		}
 		return $value;
 	}, $tags_data);
@@ -258,7 +258,8 @@ function mill_the_category ( $thelist, $separator ) {
 add_filter( 'the_category', 'mill_the_category', 10, 2 );
 
 function mill_the_tags ( $tag_list ) {
-	$tag_list = str_replace( 'rel="tag"', 'class="btn btn-outline-dark btn-sm opacity-60 text-nowrap px-2 py-1" rel="tag"', $tag_list );
+	$tag_list = str_replace( 'rel="tag"', 'class="badge bg-soft-secondary text-body font-regular" rel="tag"', $tag_list );
+
 	return $tag_list;
 }
 add_filter( 'the_tags', 'mill_the_tags' );

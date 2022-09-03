@@ -20,7 +20,7 @@
 				sprintf(
 					'<span class="mx-2">·</span><time class="entry-date published %2$s" datetime="%3$s" aria-label="%1$s">%4$s</time>%5$s',
 					esc_html__( 'Published', 'mill' ),
-					(get_the_time( 'U' ) === get_the_modified_time( 'U' )) ? 'updated' : '', 
+					(get_the_time( 'U' ) === get_the_modified_time( 'U' )) ? 'updated' : '',
 					esc_attr( get_the_date( 'c' ) ),
 					esc_html( get_the_date() ),
 					(function () {
@@ -58,7 +58,7 @@
 				<?php the_category( '<span class="text-dark opacity-60">, </span>' ); ?>
 			</div>
 		</div>
-		<div class="d-flex flex-row flex-wrap gap-1">
+		<div class="d-flex flex-row flex-wrap gap-2">
 			<?php the_tags( '', '' ); ?>
 		</div>
 	</footer>
