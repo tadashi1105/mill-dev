@@ -229,7 +229,7 @@ add_filter( 'nav_menu_link_attributes', 'mill_add_additional_class_on_a', 10, 3 
 
 function mill_add_category_list_link_attributes ( $atts, $category, $depth, $args ) {
 	if ( 'mill-badge'  === $args['style'] ) {
-		$atts['class'] = 'btn btn-outline-primary btn-sm px-2 py-1';
+		$atts['class'] = 'btn btn-outline-primary text-sm font-regular px-2 py-1';
 		$atts['rel'] = 'category tag';
 		return $atts;
 	}
