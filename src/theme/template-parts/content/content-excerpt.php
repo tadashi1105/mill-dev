@@ -7,14 +7,7 @@
  */
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class( [ 'd-flex', 'align-items-start', 'gap-2', 'gap-sm-6', 'p-2', 'p-sm-6', 'shadow', 'bg-surface-primary', 'rounded-4', 'position-relative' ] ); ?>>
-	<?php if ( ! post_password_required() && has_post_thumbnail() ) : ?>
-		<div class="flex-shrink-0">
-			<a href="<?php the_permalink();?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
-				<?php get_template_part( 'template-parts/post-thumbnail' ); ?>
-			</a>
-		</div>
-	<?php endif; ?>
-	<div class="flex-grow-1">
+	<div class="order-2 flex-grow-1">
 		<header class="header">
 			<div class="d-none d-sm-block mb-2">
 				<?php wp_list_categories( [
@@ -72,4 +65,11 @@
 			?>
 		</div>
 	</div>
+	<?php if ( ! post_password_required() && has_post_thumbnail() ) : ?>
+		<div class="order-1 flex-shrink-0">
+			<a href="<?php the_permalink();?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+				<?php get_template_part( 'template-parts/post-thumbnail' ); ?>
+			</a>
+		</div>
+	<?php endif; ?>
 </article>
