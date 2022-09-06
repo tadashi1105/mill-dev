@@ -37,7 +37,7 @@
 			<?php
 			// Author
 			printf(
-				'<div class="d-flex flex-wrap gap-1 mt-2"><p class="text-sm">%1$s<a class="link-dark opacity-60" href="%2$s" rel="author">%3$s</a></p>%4$s',
+				'<div class="d-flex flex-wrap gap-1 mt-2"><p class="text-sm">%1$s<a class="link-dark opacity-60" href="%2$s" rel="author">%3$s</a></p>%4$s</div>',
 				esc_html__( 'By ', 'mill' ),
 				esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 				esc_html( get_the_author() ),
