@@ -12,14 +12,14 @@
 		<?php
 			// Author
 			printf(
-				'<p class="text-sm mt-2">%1$s<a class="link-dark opacity-60" href="%2$s" rel="author">%3$s</a>%4$s</p>',
+				'<div class="d-flex flex-wrap gap-1 mt-2"><p class="text-sm">%1$s<a class="link-dark opacity-60" href="%2$s" rel="author">%3$s</a></p>%4$s',
 				esc_html__( 'By ', 'mill' ),
 				esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 				esc_html( get_the_author() ),
 				// Posted on
 				sprintf(
-					'<span class="mx-2">·</span><time class="entry-date published %2$s" datetime="%3$s" aria-label="%1$s">%4$s</time>%5$s',
-					esc_html__( 'Published', 'mill' ),
+					'<p class="text-sm">%1$s<time class="entry-date published %2$s" datetime="%3$s" aria-label="%1$s">%4$s</time>%5$s</p>',
+					esc_html__( '公開日:', 'mill' ),
 					(get_the_time( 'U' ) === get_the_modified_time( 'U' )) ? 'updated' : '',
 					esc_attr( get_the_date( 'c' ) ),
 					esc_html( get_the_date() ),
@@ -27,8 +27,8 @@
 						$updated = '';
 						if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 							$updated = sprintf(
-								'<span class="mx-1">/</span><time class="entry-date updated" datetime="%2$s" aria-label="%1$s">%3$s</time>',
-								esc_html__( 'Updated', 'mill' ),
+								' %1$s<time class="entry-date updated" datetime="%2$s" aria-label="%1$s">%3$s</time>',
+								esc_html__( '更新日:', 'mill' ),
 								esc_attr( get_the_modified_date( 'c' ) ),
 								esc_html( get_the_modified_date() ),
 							);
