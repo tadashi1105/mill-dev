@@ -62,7 +62,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 // @import "@webpixels/css/components/tooltips";
 
 // @import "@webpixels/css/extra";
-@import "@webpixels/css/extra/article";
+// @import "@webpixels/css/extra/article";
 // @import "@webpixels/css/extra/section-step";
 
 // @import '@webpixels/css/utilities';
@@ -171,41 +171,56 @@ Use it to make something cool, have fun, and share what you've learned with othe
 	}
 }
 
-.article.mill-typography {
+// Articles
+.article {
+	font-size: $article-font-size;
+	color: $article-color;
+	line-height: $article-text-line-height;
 	line-height: var(--x-body-line-height);
+
 	word-break: break-word;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	* + {
-		h1 {
-			margin-top: 3.5rem;
-		}
-		h2 {
-			margin-top: 3.5rem;
-		}
-		h3,
-		h4,
-		h5,
-		h6 {
-			margin-top: 3rem;
-		}
-		p,
-		ul,
-		ol,
-		dl,
-		pre,
-		blockquote,
-		table,
-		aside,
-		figure {
-			margin-top: 1rem;
-		}
+
+    ul,
+    ol,
+    dl {
+        margin-bottom: 0;
+    }
+
+    * + ul,
+    * + ol,
+    * + dl,
+    * + pre,
+    * + blockquote,
+    * + table,
+    * + aside,
+    * + figure,
+	* + p {
+		margin-top: 1.625rem;
+    }
+
+	* + h1,
+	* + h2 {
+        font-feature-settings: "palt";
+	    margin-top: 3.5rem;
+	    letter-spacing: -.025em;
 	}
-	blockquote {
-		padding: 0.5rem 1rem;
-		font-size: 0.875rem;
+
+	* + h3 {
+		margin-top: 3rem;
 	}
-	> h2 {
+
+	* + h4 {
+		margin-top: 2.5rem;
+	}
+
+	* + h6,
+	* + h5 {
+		margin-top: 2rem;
+	}
+
+    > h2 {
 		padding-bottom: 0.5rem;
 		border-bottom: 0.25rem solid $secondary;
 	}
@@ -216,54 +231,69 @@ Use it to make something cool, have fun, and share what you've learned with othe
 		padding: 0.25rem 0.5rem;
 		border-left: 0.25rem solid $secondary;
 	}
-	> p {
-		margin-bottom: 0;
+
+    > img,
+	> video {
+        margin-top: 1.625rem;
 	}
-	table {
-		width: 100%;
-		max-width: 100%;
-		border: 1px solid $border-color;
-		th,
-		td {
-			padding: $table-cell-padding-y-sm;
-			line-height: 1.5;
-			vertical-align: top;
-			border: 1px solid #dfdfdf;
-		}
-		thead th {
-			vertical-align: bottom;
-			border-bottom: 2px solid $border-color;
-			background-color: rgba($black, $table-active-bg-factor);
-		}
-		thead td {
-			border-bottom-width: 2px;
-		}
-		tbody + tbody {
-			border-top: 2px solid $border-color;
-		}
+
+    figure {
+        figcaption + pre,
+        figcaption + blockquote {
+            margin-top: 0;
+        }
+    }
+
+    pre,
+    blockquote,
+    aside {
+        padding: 1rem;
+        @include border-radius($border-radius-lg);
+    }
+
+	pre {
+		@include font-size(.875em);
+	    color: color-contrast($dark);
+	    background-color: $dark;
+	    overflow-x: auto;
 	}
-	aside {
-		padding: 1rem;
-		border: 1px solid $border-color;
-		border-radius: 2px;
-		> h2,
-		> h3,
-		> h4,
-		> h5,
-		> h6 {
-			padding: 0.25rem 0.5rem;
-			border-left: 3px solid $secondary;
-			&:first-child {
-				padding: 0;
-				padding-bottom: 0.5rem;
-				border-left: 0;
-				border-bottom: 1px solid $border-color;
-			}
-		}
-		dl:last-child,
-		ul:last-child,
-		ol:last-child {
-			margin-bottom: 0;
-		}
+
+	blockquote {
+		@include font-size(.875em);
+		color: $headings-color;
+		background-color: var(--x-surface-secondary);
 	}
+
+    aside {
+        color: $headings-color;
+        background-color: var(--x-surface-secondary);
+        > header {
+            padding-bottom: 0.25rem;
+            border-bottom: 1px solid $border-color;
+        }
+    }
+
+    table {
+        width: 100%;
+        max-width: 100%;
+        border: 1px solid $border-color;
+        th,
+        td {
+            padding: $table-cell-padding-y-sm;
+            line-height: 1.5;
+            vertical-align: top;
+            border: 1px solid #dfdfdf;
+        }
+        thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid $border-color;
+            background-color: rgba($black, $table-active-bg-factor);
+        }
+        thead td {
+            border-bottom-width: 2px;
+        }
+        tbody + tbody {
+            border-top: 2px solid $border-color;
+        }
+    }
 }

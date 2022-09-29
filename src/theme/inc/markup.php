@@ -189,7 +189,7 @@ function mill_comment( $comment, $args, $depth ) {
 				);
 				edit_comment_link(); ?>
 			</div><!-- .comment-metadata -->
-			<div class="comment-content article mill-typography">
+			<div class="comment-content article">
 				<?php if ( '0' == $comment->comment_approved ) : ?>
 					<p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' ); ?></p>
 				<?php endif; ?>
